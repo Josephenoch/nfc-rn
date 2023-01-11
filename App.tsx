@@ -1,21 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import nfcManager from 'react-native-nfc-manager';
+import Game from './src/game';
 
 export default function App() {
   const [isNfcSupported, setIsNfcSupported] = useState<boolean | null>(null)
 
   useEffect(()=>{
     const checkSupport = async () => {
-      const supports = await nfcManager.isSupported()
-      setIsNfcSupported(supports)
+      const supported = await nfcManager.isSupported()
+      if(supported) await nfcManager.start()
+      setIsNfcSupported(supported)
     }
     checkSupport()
   },[])
   return (
     <View style={styles.container}>
-      <Text>{isNfcSupported ? "Your Device Supports NFC" : "Your Device doesn't support NFC"}</Text>
+     {isNfcSupported ? <Game/> : "Your Device doesn't support NFC"}
     </View>
   );
 }
