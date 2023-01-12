@@ -14,7 +14,7 @@ const Game = () => {
         })
         if(count <=0 && startTime){
           nfcManager.unregisterTagEvent().catch(()=>0)
-          setStartTime(0)
+           setStartTime(0)
           setDuration(new Date().getTime() - startTime)
         }
         return ()=> nfcManager.setEventListener(NfcEvents.DiscoverTag, null)
