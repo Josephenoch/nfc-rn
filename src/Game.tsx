@@ -2,6 +2,8 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import nfcManager, { NfcEvents } from 'react-native-nfc-manager'
 
+
+
 const Game = () => {
   const [duration, setDuration] = useState<number | null>(null)
   const [startTime, setStartTime] = useState<number | null>(null)
